@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API OVERVIEW</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container">
+    <br>
+    {% block content %}
+<h2>ADMIN uchun Urllar</h2>
+    <h4>login: testuser  password: metsenatapi</h4>
+    <h5>urllar <strong>/api/url/</strong></h5>
+
+    <ul>
+
+        <li>API OVERVIEW: <a href="{% url 'api-overview'%}">/api/</a></li>
+        <li>'Homiylar Ro'yxati': <a href="{% url 'homiy-list'%}">'/homiy-list/'</a></li>
+        <li>'Homiy Single': '/homiy-detail/pk/</li>
+        <li>'Homiy Create': '<a href="{% url 'homiy-create'%}">/homiy-create/'</a></li>
+        <li>'Homiy Update': '/homiy-update/pk/'</li>
+        <li>'Homiy Delete': '/homiy-delete/pk/'</li>
+        </ul>
+    <ul> Talabaga PUL ajratish
+        <li>Talabaga Pul Ajratish': <a href="{% url 'make-payment'%}">'/pul-ajratish/'</a></li>
+        <li>Barcha Pul Utkazmalar': <a href="{% url 'payment-list'%}">'/payment-list/'</a></li>
+        <li>Hisobot Dashboard': <a href="{% url 'dashboard'%}">'/dashboard/'</a></li>
+        </ul>
+    <ul> Talaba Url
+        <li>Talaba List': <a href="{% url 'talaba-list'%}">/talaba-list/'</a></li>
+        <li>Talaba Detail': '/talaba-detail/pk/',</li>
+        <li>Talaba Create': '/talaba-create/',</li>
+        <li>Talaba Update': '/talaba-update/pk/',</li>
+        <li>Talaba Delete': '/talaba-delete/pk/',</li>
+    </ul>
+<h5>Autarizatsiya qilinmagan Homiy Uchun URL</h5>
+    'Homiy Yaratish': <a href="{% url 'unauth-homiy-create'%}">'/unauth-homiy-create/'</a>
+
+    {% endblock content%}
+
+</div>
+<p style="text-align: center; margin-top: 60px"> &copy; Temurbek | <a style="color: #000080; text-decoration: none; " href="mailto:646botirovtemur@gmail.com">Email</a> | <a style="color:#000080; text-decoration: none;" href="https://telegram.me/temur_6466">Telegram</a></p>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</html>
