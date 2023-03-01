@@ -60,6 +60,7 @@ def apiOverview(request):
     }
     return Response(api_urls)
 
+
 @api_view(['GET'])
 # @permission_classes([IsAdminUser])
 def homiy_list(request):
@@ -67,14 +68,12 @@ def homiy_list(request):
     serializer = HomiySerializer(queryset, many=True)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 # @permission_classes([IsAdminUser])
 def homiy_detail(request, pk):
     homiy = Homiy.objects.get(id=pk)
-
     serializer = HomiySerializer(homiy, many=False)
-
-
     return Response(serializer.data)
 
 
@@ -86,6 +85,7 @@ def homiy_create(request):
         serializer.save()
     return Response(serializer.data)
 
+
 @api_view(['DELETE'])
 # @permission_classes([IsAdminUser])
 def homiy_delete(request, pk):
@@ -94,6 +94,7 @@ def homiy_delete(request, pk):
     homiy.delete()
     return Response("Homiy O'chirildi!")
 
+
 @api_view(['POST'])
 # @permission_classes([IsAdminUser])
 def homiy_update(request, pk):
@@ -101,9 +102,7 @@ def homiy_update(request, pk):
     serializer = HomiySerializer(instance=homiy, data=request.data)
     if serializer.is_valid():
         serializer.save()
-
     return Response(serializer.data)
-
 
 
 # MAKING PAYMENT FUNCTIONS - Talabaga PUL ajratish
@@ -113,6 +112,7 @@ def payment_list(request):
     queryset = Payment.objects.all()
     serializer = PaymentSerializer(queryset, many=True)
     return Response(serializer.data)
+
 
 @api_view(['POST'])
 # @permission_classes([IsAdminUser])
@@ -124,6 +124,8 @@ def make_payment(request):
         raise ValidationError(serializer.errors)
     return Response(serializer.data)
 
+
+
 @api_view(['GET'])
 # @permission_classes([IsAdminUser])
 def get_dashboard_hisobot(request):
@@ -134,7 +136,6 @@ def get_dashboard_hisobot(request):
     homiylar_soni = Homiy.objects.all().aggregate(homiylar_soni=Count('id'))['homiylar_soni']
     serializer = {'jami_tulov_sum': jami_tulov_sum, 'jami_suralgan_sum':jami_suralgan_sum,'tulanishi_kerak_sum': tulanishi_kerak_sum,
      'talabalar_soni':talabalar_soni, 'homiylar_soni':homiylar_soni,}
-
     return Response(serializer)
 
 
@@ -185,6 +186,7 @@ def talaba_create(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+
 
 @api_view(['DELETE'])
 # @permission_classes([IsAdminUser])
