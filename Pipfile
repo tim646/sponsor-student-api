@@ -12,6 +12,9 @@ dj-rest-auth = "*"
 django-allauth = "*"
 pyyaml = "*"
 environs = "*"
+uritemplate = "*"
+drf-yasg = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

@@ -6,6 +6,7 @@ from .models import Homiy, Talaba, Payment
 
 from django.db.models import Count, Sum
 
+
 # Yangi Homiy Serializeri
 class UnauthHomiySerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,15 +56,37 @@ class TalabaSerializer(serializers.ModelSerializer):
 
 # DASHBOARD HISOBOTLAR
 class HisobotSerializer(serializers.ModelSerializer):
-    jami_tulov_sum = serializers.IntegerField()
-    jami_suralgan_sum = serializers.IntegerField()
-    tulanishi_kerak_sum = serializers.IntegerField()
-    talabalar_soni = serializers.IntegerField()
-    homiylar_soni = serializers.IntegerField()
     class Meta:
         model = Payment
-        fields = ('jami_tulov_sum', 'jami_suralgan_sum', 'tulanishi_kerak_sum', 'talabalar_soni', 'homiylar_soni',)
+        fields = ('jami_tulov_sum', 'jami_suralgan_sum', 'tulanishi_kerak_sum', 'talabalar_soni', 'homiylar_soni')
 
+
+class HisobotHomiy(serializers.ModelSerializer):
+    class Meta:
+        model = Homiy
+        fields = ('oy', 'yil', 'homiylar_soni',)
+
+class HisobotTalaba(serializers.ModelSerializer):
+    class Meta:
+        model = Talaba
+        fields = ('talabalar_soni',)
+
+
+class CombineOyHisobotSerializer(serializers.Serializer):
+    talaba = HisobotTalaba
+    homiy = HisobotTalaba
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        return data
+
+class CombineYilHisobotSerializer(serializers.Serializer):
+    talaba = HisobotTalaba
+    homiy = HisobotTalaba
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        return data
 
 
 class UserSerializer(serializers.ModelSerializer):

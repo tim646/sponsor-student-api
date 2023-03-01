@@ -27,6 +27,7 @@ urlpatterns = [
     path('pul-ajratish/', views.make_payment, name='make-payment'),
 
 #     Dashboard Hisobot URL
-    path('dashboard/', views.get_dashboard_hisobot, name='dashboard')
-
+    path('dashboard/', views.get_dashboard_hisobot, name='dashboard'),
+    path('dashboard/<int:oy>/<int:yil>/', views.homiy_talaba_kupayishi_oylarda),
+    path('dashboard/<int:yil>/', views.homiy_talaba_kupayishi_yillarda),
 ]
